@@ -27,4 +27,4 @@ steps:
 images:
 - 'gcr.io/$PROJECT_ID/gemeni-app:$COMMIT_SHA'
 
-logsBucket: gs://new-bucket-for-logs
+logsBucket: gs://new-bucket-for-logs-1
