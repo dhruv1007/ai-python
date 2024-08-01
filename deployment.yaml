@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gemini-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gemini-app
+  template:
+    metadata:
+      labels:
+        app: gemini-app
+    spec:
+      containers:
+      - name: gemini-app
+        image: gcr.io/$PROJECT_ID/gemeni-app:latest
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - name: service-account-key
+          mountPath: /var/secrets/google
+          readOnly: true
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/key.json
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gemini-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: gemini-app
