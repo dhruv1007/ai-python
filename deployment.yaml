@@ -24,6 +24,10 @@ spec:
         env:
         - name: GOOGLE_APPLICATION_CREDENTIALS
           value: /var/secrets/google/key.json
+      volumes:
+      - name: service-account-key
+        secret:
+          secretName: gemini-app-key
 ---
 apiVersion: v1
 kind: Service
