@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: gemini-app
-        image: gcr.io/$PROJECT_ID/gemeni-app:latest
+        image: gcr.io/$PROJECT_ID/gemini-app:latest
         ports:
         - containerPort: 5000
         volumeMounts:
