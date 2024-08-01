@@ -2,17 +2,18 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from google.cloud import secretmanager
 import google.generativeai as genai
+import os
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Replace with your secret name and project ID
 SECRET_NAME = "gemini-api-key"
-PROJECT_ID = "ica3-430922"
+PROJECT_ID = os.getenv('PROJECT_ID')
 
-def get_api_key_from_secret_manager(secret_name, project_id):
+def get_api_key_from_secret_manager(secret_name, PROJECT_ID):
     client = secretmanager.SecretManagerServiceClient()
-    name = f"projects/{project_id}/secrets/{secret_name}/versions/latest"
+    name = f"projects/{PROJECT_ID}/secrets/{secret_name}/versions/latest"
     response = client.access_secret_version(name=name)
     secret_string = response.payload.data.decode("UTF-8")
     return secret_string
