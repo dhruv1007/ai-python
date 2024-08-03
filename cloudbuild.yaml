@@ -11,8 +11,8 @@ steps:
   - '-f'
   - 'deployment.yaml'
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1'
+  - 'CLOUDSDK_COMPUTE_ZONE=$_CLOUD_ZONE'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=$_CLUSTER_NAME'
 
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
@@ -21,8 +21,8 @@ steps:
   - 'deployment/gemini-app'
   - 'gemini-app=gcr.io/$PROJECT_ID/gemini-app:$COMMIT_SHA'
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1'
+  - 'CLOUDSDK_COMPUTE_ZONE=$_CLOUD_ZONE'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=$_CLUSTER_NAME'
 
 images:
 - 'gcr.io/$PROJECT_ID/gemini-app:$COMMIT_SHA'
