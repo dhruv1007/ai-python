@@ -9,7 +9,7 @@ CORS(app)  # Enable CORS for all routes
 
 # Replace with your secret name and project ID
 SECRET_NAME = "gemini-api-key"
-PROJECT_ID = os.getenv('PROJECT_ID')
+PROJECT_ID = "ica3-430922"
 
 def get_api_key_from_secret_manager(secret_name, PROJECT_ID):
     client = secretmanager.SecretManagerServiceClient()

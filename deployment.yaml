@@ -24,8 +24,6 @@ spec:
         env:
         - name: GOOGLE_APPLICATION_CREDENTIALS
           value: /var/secrets/google/key.json
-        - name: PROJECT_ID
-          value: $PROJECT_ID
       volumes:
       - name: service-account-key
         secret:
